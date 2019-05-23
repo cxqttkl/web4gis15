@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>Simple Map</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/3.23/esri/css/esri.css">
-    <style>
-      html, body, #map {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <script src="https://js.arcgis.com/3.23/"></script>
-    <script>
-      var map;
-
-      require(["esri/map", "dojo/domReady!"], function(Map) {
-        map = new Map("map", {
-          basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
-          center: [-122.45, 37.75], // longitude, latitude
-          zoom: 13
-        });
-      });
-    </script>
-  </head>
-
-  <body>
-    <div id="map"></div>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cesiumjs.org/releases/1.57/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesiumjs.org/releases/1.57/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body>
+  <div id="cesiumContainer" style="width: 800px; height:800px"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjgzOWI1MC1hZTliLTQ5YjctYTEyMC02OWMwODA3YzkxZmUiLCJpZCI6MTEyOTksInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NTg1NzgzNTF9.hbU1A3K_4N8y2kUVeqZgz2m-VaRr8NYIssLBKFJcDAo';
+    var viewer = new Cesium.Viewer('cesiumContainer',{shouldAnimate : true});
+var scene = viewer.scene;
+var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
+    Cesium.Cartesian3.fromDegrees(114.366863,30.531701, 0.0));
+var model = scene.primitives.add(Cesium.Model.fromGltf({
+    url : 'https://cxqttkl.github.io/web4gis15/Bee.glb',
+    modelMatrix : modelMatrix,
+    scale : 200000.0
+}));
+Cesium.when(model.readyPromise).then(function(model) {
+    viewer.camera.setView({
+    destination : Cesium.Cartesian3.fromDegrees(114.366863,30.531701, 1000),
+    orientation: {
+        heading : 0.0,
+        pitch : -Cesium.Math.PI_OVER_TWO,
+        roll : 0.0
+    }
+});
+    model.activeAnimations.addAll({
+        loop : Cesium.ModelAnimationLoop.REPEAT
+    });
+});
+    
+  </script>
+</body>
 </html>
