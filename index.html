@@ -9,7 +9,7 @@
   <div id="cesiumContainer" style="width: 800px; height:800px"></div>
   <script>
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjgzOWI1MC1hZTliLTQ5YjctYTEyMC02OWMwODA3YzkxZmUiLCJpZCI6MTEyOTksInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NTg1NzgzNTF9.hbU1A3K_4N8y2kUVeqZgz2m-VaRr8NYIssLBKFJcDAo';
-    var viewer = new Cesium.Viewer('cesiumContainer',{shouldAnimate : true});
+    var viewer = new Cesium.Viewer('cesiumContainer',{shouldAnimate : true,terrainProvider: Cesium.createWorldTerrain()});
 var scene = viewer.scene;
 var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
     Cesium.Cartesian3.fromDegrees(114.366863,30.531701, 0.0));
