@@ -6,7 +6,7 @@
   <link href="https://cesiumjs.org/releases/1.57/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
-  <div id="cesiumContainer" ></div>
+  <div id="cesiumContainer"  style="width: 800px; height:800px" ></div>
   <script>
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhMjgzOWI1MC1hZTliLTQ5YjctYTEyMC02OWMwODA3YzkxZmUiLCJpZCI6MTEyOTksInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NTg1NzgzNTF9.hbU1A3K_4N8y2kUVeqZgz2m-VaRr8NYIssLBKFJcDAo';
     var viewer = new Cesium.Viewer('cesiumContainer',{shouldAnimate : true,terrainProvider: Cesium.createWorldTerrain(),geocoder:false,
